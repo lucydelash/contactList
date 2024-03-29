@@ -1,15 +1,21 @@
-import { useState } from 'react';
-import './App.css';
-import ContactList from './components/ContactList'; // Importing the ContactList component
+import React, { useState } from "react";
+import "./App.css";
+import ContactList from "./components/ContactList";
+import SelectedContact from "./components/SelectedContact";
 
-function App() {
-  const [] = useState(0);
+export default function App() {
+  const [selectedContactId, setSelectedContactId] = useState(null);
 
   return (
     <>
-      <ContactList /> {/* Using the ContactList component within the React fragments */}
+      {selectedContactId ? (
+        <SelectedContact
+          selectedContactId={selectedContactId}
+          setSelectedContactId={setSelectedContactId}
+        />
+      ) : (
+        <ContactList setSelectedContactId={setSelectedContactId} />
+      )}
     </>
   );
 }
-
-export default App;
